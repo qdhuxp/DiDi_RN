@@ -1294,6 +1294,13 @@
     react-is "^16.13.0"
     use-subscription "^1.4.0"
 
+"@react-navigation/material-top-tabs@^5.3.0":
+  version "5.3.0"
+  resolved "https://registry.npm.taobao.org/@react-navigation/material-top-tabs/download/@react-navigation/material-top-tabs-5.3.0.tgz#f6b79fa51a1f9c4a9567db057465fc3d245810bc"
+  integrity sha1-9refpRofnEqVZ9sFdGX8PSRYELw=
+  dependencies:
+    color "^3.1.3"
+
 "@react-navigation/native@^5.7.6":
   version "5.7.6"
   resolved "https://registry.npm.taobao.org/@react-navigation/native/download/@react-navigation/native-5.7.6.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40react-navigation%2Fnative%2Fdownload%2F%40react-navigation%2Fnative-5.7.6.tgz#47546c512488d0e9c343219af635e1a44881761d"
@@ -2287,7 +2294,7 @@ color-support@^1.1.3:
   resolved "https://registry.npm.taobao.org/color-support/download/color-support-1.1.3.tgz#93834379a1cc9a0c61f82f52f0d04322251bd5a2"
   integrity sha1-k4NDeaHMmgxh+C9S8NBDIiUb1aI=
 
-color@^3.1.2:
+color@^3.1.2, color@^3.1.3:
   version "3.1.3"
   resolved "https://registry.npm.taobao.org/color/download/color-3.1.3.tgz#ca67fb4e7b97d611dcde39eceed422067d91596e"
   integrity sha1-ymf7TnuX1hHc3jns7tQiBn2RWW4=
@@ -6056,6 +6063,11 @@ react-native-swipeout@^2.3.6:
     create-react-class "^15.6.0"
     prop-types "^15.5.10"
     react-tween-state "^0.1.5"
+
+react-native-tab-view@^2.15.2:
+  version "2.15.2"
+  resolved "https://registry.npm.taobao.org/react-native-tab-view/download/react-native-tab-view-2.15.2.tgz?cache=0&sync_timestamp=1602059290475&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-native-tab-view%2Fdownload%2Freact-native-tab-view-2.15.2.tgz#4bc7832d33a119306614efee667509672a7ee64e"
+  integrity sha1-S8eDLTOhGTBmFO/uZnUJZyp+5k4=
 
 react-native-webview@^10.9.2:
   version "10.9.2"

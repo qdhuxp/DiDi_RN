@@ -36,7 +36,7 @@ function Web(props) {
                 startInLoadingState={true}
                 onNavigationStateChange={(navState) => {
                     // Keep track of going back navigation within component
-                    console.log('[onNavigationStateChange]', navState);
+                    // console.log('[onNavigationStateChange]', navState);
                     webView.current.canGoBack = navState.canGoBack;
                     const title =
                         navState.title.indexOf('http') >= 0
@@ -45,7 +45,7 @@ function Web(props) {
                     props.navigation.setOptions({headerTitle: title});
                 }}
                 onLoadProgress={({nativeEvent}) => {
-                    console.log('[onLoadProgress]', nativeEvent);
+                    // console.log('[onLoadProgress]', nativeEvent);
                     if (nativeEvent.progress === 1) {
                         setShowLoadingProgress(false);
                     } else {

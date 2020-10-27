@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, {useEffect, useState, useContext, useRef} from 'react';
 import {
     Animated,
     Dimensions,
@@ -12,7 +12,7 @@ import BikeLevelCard from './BikeLevelCard';
 import ADCard from '../../../component/ADCard';
 import {SystemContext} from '../../../../Context';
 import MyPositionButton from '../../../component/MyPositionButton';
-import { useIsFocused } from '@react-navigation/native';
+import {useIsFocused} from '@react-navigation/native';
 
 function BikeFloatPanel(props) {
     const isFocused = useIsFocused();
@@ -20,11 +20,11 @@ function BikeFloatPanel(props) {
         top: Dimensions.get('window').height + 15,
         bottom: 145,
     };
-    const [slidingUpPanel, setSlidingUpPanel] = useState(null);
-    const [momentumDragValue, setMomentumDragValue] = useState(
-        slidingUpPanelProps.bottom,
-    );
-    const [scrollView, setScrollView] = useState(null);
+    const slidingUpPanel = useRef(null);
+    const scrollView = useRef(null);
+    // const [slidingUpPanel, setSlidingUpPanel] = useState(null);
+    const [momentumDragValue, setMomentumDragValue] = useState(0);
+    // const [scrollView, setScrollView] = useState(null);
     const {showHeader, setShowHeader} = useContext(SystemContext);
 
     const styles = {
@@ -38,30 +38,38 @@ function BikeFloatPanel(props) {
 
     useEffect(() => {
         if (slidingUpPanel) {
-            slidingUpPanel.hide(); // 100
+            slidingUpPanel.current.hide(); // 100
         }
     }, [slidingUpPanel]);
 
     useEffect(() => {
-        // console.log('[BikePage]', isFocused);
+        console.log('[BikePage]', isFocused, showHeader);
         if (!slidingUpPanel || !isFocused) {
             return;
         }
         if (showHeader) {
             setTimeout(() => {
-                slidingUpPanel.hide();
+                slidingUpPanel.current.hide();
                 setMomentumDragValue(slidingUpPanelProps.bottom);
-                scrollView.scrollTo({x: 0, y: 0, animated: true});
+                scrollView.current.scrollTo({x: 0, y: 0, animated: true});
             }, 0);
         } else {
             // setTimeout(() => {
-                slidingUpPanel.show(slidingUpPanelProps.top);
-                setMomentumDragValue(slidingUpPanelProps.top);
+            slidingUpPanel.current.show(slidingUpPanelProps.top);
+            setMomentumDragValue(slidingUpPanelProps.top);
             // }, 0);
         }
     }, [showHeader]);
 
+    function onSlidePanelDragEnd(position, gestureState) {
+        // console.log(position,gestureState)
+        if (gestureState.dy < 0) {
+            setShowHeader(false);
+        }
+    }
+
     function onSlidePanelMomentumDragStart(pos) {
+        // console.log('Bike [onSlidePanelMomentumDragStart]', pos, momentumDragValue);
         if (pos < momentumDragValue) {
             setShowHeader(true);
         } else if (pos > momentumDragValue) {
@@ -72,8 +80,9 @@ function BikeFloatPanel(props) {
     return (
         <View>
             <SlidingUpPanel
-                ref={(panel) => setSlidingUpPanel(panel)}
-                // onDragEnd={onSlidePanelDragEnd}
+                key={'BikeFloatPanel'}
+                ref={slidingUpPanel}
+                onDragEnd={onSlidePanelDragEnd}
                 onMomentumDragStart={onSlidePanelMomentumDragStart}
                 // animatedValue={new Animated.Value(100)}
                 snappingPoints={[360]}
@@ -108,9 +117,7 @@ function BikeFloatPanel(props) {
                         </Button>
                         <WhiteSpace />
                         <ScrollView
-                            ref={(view) => {
-                                setScrollView(view);
-                            }}
+                            ref={scrollView}
                             alwaysBounceVertical={true}
                             style={{flex: 1}}
                             onScrollEndDrag={({nativeEvent}) => {

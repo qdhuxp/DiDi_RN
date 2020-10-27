@@ -6,24 +6,24 @@
  * @flow strict-local
  */
 // import 'react-native-gesture-handler';
-import React, {useContext} from 'react';
-import {StatusBar, View} from 'react-native';
+import React from 'react';
+import {View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator, TransitionSpecs, TransitionPresets} from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {Provider} from '@ant-design/react-native';
 import AppContext from './Context';
-import Home from './src/page/Home/Home';
 import Web from './src/page/Web';
 import Bike from './src/page/Bike';
 import Taxi from './src/page/Taxi';
 import SafeCenter from './src/page/SafeCenter';
 import Header from './src/component/Header';
 import NavLeftButton from './src/component/NavLeftButton';
-import ViewNativeComponent from 'react-native/Libraries/Components/View/ViewNativeComponent';
 
-const Stack = createStackNavigator();
-const MainStack = createStackNavigator();
+// const Stack = createStackNavigator();
+// const MainStack = createStackNavigator();
 const RootStack = createStackNavigator();
+const Tab = createMaterialTopTabNavigator();
 
 const App: () => React$Node = () => {
     const SystemNavigator = React.useRef(null);
@@ -50,20 +50,25 @@ const App: () => React$Node = () => {
     function MainStackScreen() {
         return (
             <>
-                <MainStack.Navigator
+                <Tab.Navigator
                     initialRouteName="BikePage"
+                    tabBarPosition={'top'}
+                    swipeEnabled={false}
+                    tabBar={(props) => {
+                        return <View />;
+                    }}
                     screenOptions={{headerTitleAlign: 'center'}}>
-                    <MainStack.Screen
+                    <Tab.Screen
                         name="BikePage"
                         component={Bike}
-                        options={screenOptions}
+                        // options={screenOptions}
                     />
-                    <MainStack.Screen
+                    <Tab.Screen
                         name="TaxiPage"
                         component={Taxi}
-                        options={screenOptions}
+                        // options={screenOptions}
                     />
-                </MainStack.Navigator>
+                </Tab.Navigator>
                 <Header SystemNavigator={SystemNavigator} />
             </>
         );

@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {TouchableWithoutFeedback, View} from 'react-native';
+import {TouchableNativeFeedback, View} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faArrowDown} from '@fortawesome/free-solid-svg-icons';
 import {SystemContext} from '../../Context';
@@ -7,14 +7,25 @@ import {SystemContext} from '../../Context';
 function NavLeftButton(props) {
     const {setShowHeader} = useContext(SystemContext);
     return (
-        <TouchableWithoutFeedback
+        <TouchableNativeFeedback
+            style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignSelf: 'center',
+                alignItems: 'flex-start',
+                ...props.style,
+            }}
             onPress={() => {
                 setShowHeader(true);
-        }}>
-            <View style={{paddingLeft: 10, paddingRight: 10}}>
-                <FontAwesomeIcon icon={faArrowDown} size={18} />
+            }}>
+            <View
+                style={{
+                    padding: 5,
+                    width: 30,
+                }}>
+                <FontAwesomeIcon icon={faArrowDown} size={20} />
             </View>
-        </TouchableWithoutFeedback>
+        </TouchableNativeFeedback>
     );
 }
 

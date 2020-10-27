@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import {Dimensions, Image, ScrollView, View} from 'react-native';
 import {Flex, WhiteSpace} from '@ant-design/react-native';
 import SlidingUpPanel from 'rn-sliding-up-panel';
@@ -19,12 +19,11 @@ function TaxiFloatPanel(props) {
         top: deviceHeight + 250 - 60,
         bottom: 250,
     };
-    const [slidingUpPanel, setSlidingUpPanel] = useState(null);
-    const [momentumDragValue, setMomentumDragValue] = useState(
-        slidingUpPanelProps.bottom,
-    );
-    const [scrollView, setScrollView] = useState(null);
-    const [isSafeCenterHidden, setSafeCenterHidden] = useState(true);
+    const slidingUpPanel = useRef(null);
+    const scrollView = useRef(null);
+    // const [slidingUpPanel, setSlidingUpPanel] = useState(null);
+    const [momentumDragValue, setMomentumDragValue] = useState(0);
+    // const [scrollView, setScrollView] = useState(null);
     const {showHeader, setShowHeader} = useContext(SystemContext);
 
     const styles = {
@@ -40,31 +39,38 @@ function TaxiFloatPanel(props) {
 
     useEffect(() => {
         if (slidingUpPanel) {
-            slidingUpPanel.hide(); // 100
+            slidingUpPanel.current.hide(); // 100
         }
     }, [slidingUpPanel]);
 
     useEffect(() => {
-        // console.log('[TaxiPage]', isFocused);
+        console.log('[TaxiPage]', isFocused, showHeader);
         if (!slidingUpPanel || !isFocused) {
             return;
         }
         if (showHeader) {
             setTimeout(() => {
-                slidingUpPanel.hide();
+                slidingUpPanel.current.hide();
                 setMomentumDragValue(slidingUpPanelProps.bottom);
-                scrollView.scrollTo({x: 0, y: 0, animated: true});
+                scrollView.current.scrollTo({x: 0, y: 0, animated: true});
             }, 0);
         } else {
             // setTimeout(() => {
-            slidingUpPanel.show(slidingUpPanelProps.top);
+            slidingUpPanel.current.show(slidingUpPanelProps.top);
             setMomentumDragValue(slidingUpPanelProps.top);
             // }, 0);
         }
     }, [showHeader]);
 
+    function onSlidePanelDragEnd(position, gestureState) {
+        // console.log(position,gestureState)
+        if (gestureState.dy < 0) {
+            setShowHeader(false);
+        }
+    }
+
     function onSlidePanelMomentumDragStart(pos) {
-        // console.log('[onSlidePanelMomentumDragStart]', pos);
+        // console.log('Taxi [onSlidePanelMomentumDragStart]', pos, momentumDragValue);
         if (pos < momentumDragValue) {
             setShowHeader(true);
         } else if (pos > momentumDragValue) {
@@ -75,8 +81,9 @@ function TaxiFloatPanel(props) {
     return (
         <View>
             <SlidingUpPanel
-                ref={(panel) => setSlidingUpPanel(panel)}
-                // onDragEnd={onSlidePanelDragEnd}
+                key={'TaxiFloatPanel'}
+                ref={slidingUpPanel}
+                onDragEnd={onSlidePanelDragEnd}
                 onMomentumDragStart={onSlidePanelMomentumDragStart}
                 // animatedValue={slidingUpPanelAnimatedValue}
                 snappingPoints={[360]}
@@ -110,9 +117,7 @@ function TaxiFloatPanel(props) {
                         <CarUse />
                         <WhiteSpace size="lg" />
                         <ScrollView
-                            ref={(view) => {
-                                setScrollView(view);
-                            }}
+                            ref={scrollView}
                             alwaysBounceVertical={true}
                             // style={{flex: 1}}
                             onScrollEndDrag={({nativeEvent}) => {

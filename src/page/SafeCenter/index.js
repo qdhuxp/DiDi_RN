@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import {
     Dimensions,
     Image,
-    ScrollView,
+    ScrollView, StatusBar,
     Text,
     TouchableWithoutFeedback,
     View,
@@ -213,6 +213,11 @@ function SafeCenter(props) {
                 backgroundColor: 'transparent',
                 maxHeight: Dimensions.get('window').height,
             }}>
+            <StatusBar
+                barStyle="dark-content"
+                translucent={true}
+                backgroundColor="transparent"
+            />
             <View
                 style={{
                     flex: 1,
