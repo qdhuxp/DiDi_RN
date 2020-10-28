@@ -130,6 +130,9 @@ function TaxiFloatPanel(props) {
                                 text={'查收你的优惠券'}
                                 buttonName="立即领取"
                                 icon={require('../../../assets/coupon1.jpg')}
+                                link={
+                                    'https://page.udache.com/activity/apps/preference-recharge/index.html'
+                                }
                             />
                             <WhiteSpace size="sm" />
 
@@ -138,6 +141,17 @@ function TaxiFloatPanel(props) {
                                 text={'醉酒乘车\n需清醒亲友陪同'}
                                 buttonName="现在查收"
                                 icon={require('../../../assets/drink.jpg')}
+                            />
+                            <WhiteSpace size="sm" />
+
+                            <ADCard
+                                title={'守护更贴心 出行更安全'}
+                                text={'开启滴滴护航\n深度保障行程安全'}
+                                buttonName="马上了解"
+                                icon={require('../../../assets/滴滴护航.jpg')}
+                                link={
+                                    'https://dpubstatic.udache.com/static/dpubimg/d443165baa06cdebb3ece0c30cfda08d/index.html'
+                                }
                             />
                             <WhiteSpace size="sm" />
 
