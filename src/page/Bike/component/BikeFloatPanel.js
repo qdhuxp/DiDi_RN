@@ -43,7 +43,7 @@ function BikeFloatPanel(props) {
     }, [slidingUpPanel]);
 
     useEffect(() => {
-        console.log('[BikePage]', isFocused, showHeader);
+        // console.log('[BikePage]', isFocused, showHeader);
         if (!slidingUpPanel || !isFocused) {
             return;
         }

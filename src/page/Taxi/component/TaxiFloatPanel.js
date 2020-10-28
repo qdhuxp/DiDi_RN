@@ -44,7 +44,7 @@ function TaxiFloatPanel(props) {
     }, [slidingUpPanel]);
 
     useEffect(() => {
-        console.log('[TaxiPage]', isFocused, showHeader);
+        // console.log('[TaxiPage]', isFocused, showHeader);
         if (!slidingUpPanel || !isFocused) {
             return;
         }
