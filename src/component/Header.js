@@ -14,26 +14,13 @@ import {faCommentDots, faUserCircle} from '@fortawesome/free-regular-svg-icons';
 import * as Animatable from 'react-native-animatable';
 import {SystemContext} from '../../Context';
 import NavLeftButton from './NavLeftButton';
+import {pages} from '../Config/default';
 
 function Header(props) {
     const {showHeader} = useContext(SystemContext);
     const headerRef = useRef(null);
     const headerBarRef = useRef(null);
     const [pageTabs, setPageTabs] = useState([]);
-
-    const pages = [
-        {
-            title: '青桔骑行',
-            page: 'BikePage',
-        },
-        {title: '打车', page: 'TaxiPage'},
-        {title: '拉货搬家', page: 'GoodsPickUpPage'},
-        {title: '特惠来了', page: 'CouponPage'},
-        {title: '顺风车', page: 'HitchRidePage'},
-        {title: '青菜拼车', page: 'CarPoolPage'},
-        {title: '公交', page: 'BusPage'},
-        {title: '代驾', page: 'DesignatedDrivePage'},
-    ];
 
     useEffect(() => {
         if (props.SystemNavigator) {
@@ -42,7 +29,7 @@ function Header(props) {
                     <TouchableHighlight
                         key={item.title}
                         onPress={() =>
-                            props.SystemNavigator.current.navigate(item.page)
+                            props.SystemNavigator.current.navigate(item.name)
                         }>
                         <View
                             style={{
@@ -93,9 +80,9 @@ function Header(props) {
                         backgroundColor: 'white',
                         // alignItems: 'center',
                         // justifyItems: 'start',
-                        justifyContent: 'center'
-                    }} >
-                    <SafeAreaView >
+                        justifyContent: 'center',
+                    }}>
+                    <SafeAreaView>
                         <NavLeftButton />
                     </SafeAreaView>
                 </View>
@@ -208,7 +195,7 @@ function Header(props) {
                         backgroundColor: '#FF6100',
                     }}
                     onTabClick={(tab, index) => {
-                        props.SystemNavigator.current.navigate(tab.page);
+                        props.SystemNavigator.current.navigate(tab.name);
                     }}
                     // renderTab={(tab) => {
                     //     // 可以对选中的tab设置样式
@@ -236,7 +223,6 @@ function Header(props) {
                     // }}
                 />
             </Animatable.View>
-
         </View>
     );
 }

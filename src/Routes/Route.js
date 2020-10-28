@@ -15,6 +15,7 @@ import HitchRide from '../page/HitchRide';
 import CarPool from '../page/CarPool';
 import Bus from '../page/Bus';
 import DesignatedDrive from '../page/DesignatedDrive';
+import {pages} from '../Config/default';
 
 // const Stack = createStackNavigator();
 // const MainStack = createStackNavigator();
@@ -42,6 +43,16 @@ function Route() {
         },
         cardStyle: {backgroundColor: 'rgba(0,0,0,0.3)'},
     };
+    const Screens = pages.map((item) => {
+        return (
+            <Tab.Screen
+                key={item.name}
+                name={item.name}
+                component={item.page}
+                // options={screenOptions}
+            />
+        );
+    });
 
     function MainStackScreen() {
         return (
@@ -54,46 +65,7 @@ function Route() {
                         return <View />;
                     }}
                     screenOptions={{headerTitleAlign: 'center'}}>
-                    <Tab.Screen
-                        name="BikePage"
-                        component={Bike}
-                        // options={screenOptions}
-                    />
-                    <Tab.Screen
-                        name="TaxiPage"
-                        component={Taxi}
-                        // options={screenOptions}
-                    />
-                    <Tab.Screen
-                        name="GoodsPickUpPage"
-                        component={GoodsPickUp}
-                        // options={screenOptions}
-                    />
-                    <Tab.Screen
-                        name="CouponPage"
-                        component={Coupon}
-                        // options={screenOptions}
-                    />
-                    <Tab.Screen
-                        name="HitchRidePage"
-                        component={HitchRide}
-                        // options={screenOptions}
-                    />
-                    <Tab.Screen
-                        name="CarPoolPage"
-                        component={CarPool}
-                        // options={screenOptions}
-                    />
-                    <Tab.Screen
-                        name="BusPage"
-                        component={Bus}
-                        // options={screenOptions}
-                    />
-                    <Tab.Screen
-                        name="DesignatedDrivePage"
-                        component={DesignatedDrive}
-                        // options={screenOptions}
-                    />
+                    {Screens}
                 </Tab.Navigator>
                 <Header SystemNavigator={SystemNavigator} />
             </>

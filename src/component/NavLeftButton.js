@@ -20,8 +20,10 @@ function NavLeftButton(props) {
             }}>
             <View
                 style={{
-                    padding: 5,
-                    width: 30,
+                    padding: 10,
+                    width: 40,
+                    height: 40,
+                    borderRadius: 20
                 }}>
                 <FontAwesomeIcon icon={faArrowDown} size={20} />
             </View>
