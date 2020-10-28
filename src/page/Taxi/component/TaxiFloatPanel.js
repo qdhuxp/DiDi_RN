@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import {Dimensions, Image, ScrollView, View} from 'react-native';
+import {Dimensions, Image, ScrollView, View, Animated} from 'react-native';
 import {Flex, WhiteSpace} from '@ant-design/react-native';
 import SlidingUpPanel from 'rn-sliding-up-panel';
 import ADCard from '../../../component/ADCard';
@@ -85,7 +85,7 @@ function TaxiFloatPanel(props) {
                 ref={slidingUpPanel}
                 onDragEnd={onSlidePanelDragEnd}
                 onMomentumDragStart={onSlidePanelMomentumDragStart}
-                // animatedValue={slidingUpPanelAnimatedValue}
+                animatedValue={new Animated.Value(250)}
                 snappingPoints={[360]}
                 height={slidingUpPanelProps.top}
                 friction={0.8}

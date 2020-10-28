@@ -84,7 +84,7 @@ function BikeFloatPanel(props) {
                 ref={slidingUpPanel}
                 onDragEnd={onSlidePanelDragEnd}
                 onMomentumDragStart={onSlidePanelMomentumDragStart}
-                // animatedValue={new Animated.Value(100)}
+                animatedValue={new Animated.Value(150)}
                 snappingPoints={[360]}
                 height={slidingUpPanelProps.top}
                 friction={0.8}
