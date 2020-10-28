@@ -9,6 +9,12 @@ import Header from '../component/Header';
 import SafeCenter from '../page/SafeCenter';
 import Web from '../page/Web';
 import NavLeftButton from '../component/NavLeftButton';
+import GoodsPickUp from '../page/GoodsPickUp';
+import Coupon from '../page/Coupon';
+import HitchRide from '../page/HitchRide';
+import CarPool from '../page/CarPool';
+import Bus from '../page/Bus';
+import DesignatedDrive from '../page/DesignatedDrive';
 
 // const Stack = createStackNavigator();
 // const MainStack = createStackNavigator();
@@ -56,6 +62,36 @@ function Route() {
                     <Tab.Screen
                         name="TaxiPage"
                         component={Taxi}
+                        // options={screenOptions}
+                    />
+                    <Tab.Screen
+                        name="GoodsPickUpPage"
+                        component={GoodsPickUp}
+                        // options={screenOptions}
+                    />
+                    <Tab.Screen
+                        name="CouponPage"
+                        component={Coupon}
+                        // options={screenOptions}
+                    />
+                    <Tab.Screen
+                        name="HitchRidePage"
+                        component={HitchRide}
+                        // options={screenOptions}
+                    />
+                    <Tab.Screen
+                        name="CarPoolPage"
+                        component={CarPool}
+                        // options={screenOptions}
+                    />
+                    <Tab.Screen
+                        name="BusPage"
+                        component={Bus}
+                        // options={screenOptions}
+                    />
+                    <Tab.Screen
+                        name="DesignatedDrivePage"
+                        component={DesignatedDrive}
                         // options={screenOptions}
                     />
                 </Tab.Navigator>

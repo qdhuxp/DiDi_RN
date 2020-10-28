@@ -27,8 +27,12 @@ function Header(props) {
             page: 'BikePage',
         },
         {title: '打车', page: 'TaxiPage'},
-        {title: '拉货搬家', page: 'MovePage'},
+        {title: '拉货搬家', page: 'GoodsPickUpPage'},
         {title: '特惠来了', page: 'CouponPage'},
+        {title: '顺风车', page: 'HitchRidePage'},
+        {title: '青菜拼车', page: 'CarPoolPage'},
+        {title: '公交', page: 'BusPage'},
+        {title: '代驾', page: 'DesignatedDrivePage'},
     ];
 
     useEffect(() => {
