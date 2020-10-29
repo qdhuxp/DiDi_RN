@@ -16,6 +16,8 @@ import CarPool from '../page/CarPool';
 import Bus from '../page/Bus';
 import DesignatedDrive from '../page/DesignatedDrive';
 import {pages} from '../Config/default';
+import QRCodeScan from '../page/QRCodeScan';
+import MessageCenter from '../page/MessageCenter';
 
 // const Stack = createStackNavigator();
 // const MainStack = createStackNavigator();
@@ -30,19 +32,29 @@ function Route() {
             return <NavLeftButton />;
         },
     };
+    const transparentHeaderStyle = {
+        backgroundColor: 'transparent',
+        elevation: 0,
+        borderBottomColor: 'transparent',
+    };
+
     const modalScreenHeaderOptions = {
         title: '',
         headerLeft: () => {
             return <View />;
         },
-        headerStyle: {
-            backgroundColor: 'transparent',
-            // shadowColor: 'transparent',
-            elevation: 0,
-            borderBottomColor: 'transparent',
-        },
+        headerStyle: transparentHeaderStyle,
         cardStyle: {backgroundColor: 'rgba(0,0,0,0.3)'},
     };
+    const QRCodeScanPageOptions = {
+        title: '扫一扫',
+        headerStyle: transparentHeaderStyle,
+        headerTintColor: '#fff',
+        cardStyle: {
+            backgroundColor: 'black',
+        },
+    };
+
     const Screens = pages.map((item) => {
         return (
             <Tab.Screen
@@ -90,6 +102,21 @@ function Route() {
                     component={Web}
                     options={{
                         title: '滴滴出行',
+                    }}
+                />
+                <RootStack.Screen
+                    name="QRCodeScan"
+                    component={QRCodeScan}
+                    options={QRCodeScanPageOptions}
+                />
+                <RootStack.Screen
+                    name="MessageCenter"
+                    component={MessageCenter}
+                    options={{
+                        title: '消息中心',
+                        cardStyle: {
+                            backgroundColor: 'white',
+                        },
                     }}
                 />
             </RootStack.Navigator>

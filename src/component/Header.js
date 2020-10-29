@@ -158,7 +158,13 @@ function Header(props) {
                                 <View style={{flex: 1}}>
                                     <Flex justify="between">
                                         <View>
-                                            <TouchableHighlight>
+                                            <TouchableHighlight
+                                                onPress={() => {
+                                                    props.SystemNavigator.current.navigate(
+                                                        'MessageCenter',
+                                                    );
+                                                }}
+                                            >
                                                 <FontAwesomeIcon
                                                     icon={faCommentDots}
                                                     size={22}
@@ -166,7 +172,12 @@ function Header(props) {
                                             </TouchableHighlight>
                                         </View>
                                         <View>
-                                            <TouchableHighlight>
+                                            <TouchableHighlight
+                                                onPress={() => {
+                                                    props.SystemNavigator.current.navigate(
+                                                        'QRCodeScan',
+                                                    );
+                                                }}>
                                                 <FontAwesomeIcon
                                                     icon={faQrcode}
                                                     size={22}
