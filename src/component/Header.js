@@ -5,6 +5,7 @@ import {
     StatusBar,
     Text,
     TouchableHighlight,
+    TouchableOpacity,
     View,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -17,7 +18,7 @@ import NavLeftButton from './NavLeftButton';
 import {pages} from '../Config/default';
 
 function Header(props) {
-    const {showHeader} = useContext(SystemContext);
+    const {showHeader, currentLocation} = useContext(SystemContext);
     const headerRef = useRef(null);
     const headerBarRef = useRef(null);
     const [pageTabs, setPageTabs] = useState([]);
@@ -114,35 +115,49 @@ function Header(props) {
                                 <View style={{flex: 1}}>
                                     <Flex justify="between">
                                         <Flex.Item>
-                                            <TouchableHighlight>
+                                            <TouchableOpacity>
                                                 <View style={{width: 24}}>
                                                     <FontAwesomeIcon
                                                         icon={faUserCircle}
                                                         size={22}
                                                     />
                                                 </View>
-                                            </TouchableHighlight>
+                                            </TouchableOpacity>
                                         </Flex.Item>
                                         <Flex.Item>
-                                            <TouchableHighlight>
-                                                <Text
+                                            <TouchableOpacity
+                                                style={{
+                                                    alignItems: 'center',
+                                                    fontSize: 12,
+                                                    width: 60,
+                                                }}
+                                                onPress={() => {
+                                                    props.SystemNavigator.current.navigate(
+                                                        'CityPicker',
+                                                    );
+                                                }}>
+                                                <View
                                                     style={{
+                                                        flexDirection: 'row',
                                                         alignItems: 'center',
-                                                        fontSize: 12,
-                                                        width: 60,
                                                     }}>
-                                                    苏州市
+                                                    <Text>
+                                                        {currentLocation &&
+                                                            currentLocation
+                                                                .addressComponent
+                                                                .city}
+                                                    </Text>
                                                     <FontAwesomeIcon
                                                         icon={faChevronDown}
                                                         size={12}
                                                     />
-                                                </Text>
-                                            </TouchableHighlight>
+                                                </View>
+                                            </TouchableOpacity>
                                         </Flex.Item>
                                     </Flex>
                                 </View>
                                 <View style={{flex: 3}}>
-                                    <TouchableHighlight
+                                    <TouchableOpacity
                                         style={{
                                             justifyItems: 'center',
                                             width: '100%',
@@ -153,26 +168,25 @@ function Header(props) {
                                                 height: '100%',
                                             }}
                                         />
-                                    </TouchableHighlight>
+                                    </TouchableOpacity>
                                 </View>
                                 <View style={{flex: 1}}>
                                     <Flex justify="between">
                                         <View>
-                                            <TouchableHighlight
+                                            <TouchableOpacity
                                                 onPress={() => {
                                                     props.SystemNavigator.current.navigate(
                                                         'MessageCenter',
                                                     );
-                                                }}
-                                            >
+                                                }}>
                                                 <FontAwesomeIcon
                                                     icon={faCommentDots}
                                                     size={22}
                                                 />
-                                            </TouchableHighlight>
+                                            </TouchableOpacity>
                                         </View>
                                         <View>
-                                            <TouchableHighlight
+                                            <TouchableOpacity
                                                 onPress={() => {
                                                     props.SystemNavigator.current.navigate(
                                                         'QRCodeScan',
@@ -182,7 +196,7 @@ function Header(props) {
                                                     icon={faQrcode}
                                                     size={22}
                                                 />
-                                            </TouchableHighlight>
+                                            </TouchableOpacity>
                                         </View>
                                     </Flex>
                                 </View>

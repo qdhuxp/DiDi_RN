@@ -3,21 +3,14 @@ import {View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import Bike from '../page/Bike';
-import Taxi from '../page/Taxi';
 import Header from '../component/Header';
 import SafeCenter from '../page/SafeCenter';
 import Web from '../page/Web';
 import NavLeftButton from '../component/NavLeftButton';
-import GoodsPickUp from '../page/GoodsPickUp';
-import Coupon from '../page/Coupon';
-import HitchRide from '../page/HitchRide';
-import CarPool from '../page/CarPool';
-import Bus from '../page/Bus';
-import DesignatedDrive from '../page/DesignatedDrive';
 import {pages} from '../Config/default';
 import QRCodeScan from '../page/QRCodeScan';
 import MessageCenter from '../page/MessageCenter';
+import CityPicker from '../page/CityPicker/index';
 
 // const Stack = createStackNavigator();
 // const MainStack = createStackNavigator();
@@ -117,6 +110,17 @@ function Route() {
                         cardStyle: {
                             backgroundColor: 'white',
                         },
+                    }}
+                />
+                <RootStack.Screen
+                    name="CityPicker"
+                    component={CityPicker}
+                    options={{
+                        title: '',
+                        cardStyle: {
+                            backgroundColor: 'white',
+                        },
+                        headerShown: false,
                     }}
                 />
             </RootStack.Navigator>

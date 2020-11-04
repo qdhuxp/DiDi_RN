@@ -184,6 +184,8 @@ android {
 dependencies {
     implementation 'com.android.support:multidex:1.0.3'
 
+    implementation project(':react-native-spring-scrollview')
+
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
@@ -210,7 +212,7 @@ dependencies {
     } else {
         implementation jscFlavor
     }
-    compile project(':react-native-android-location-services-dialog-box')
+    implementation project(':react-native-android-location-services-dialog-box')
 }
 
 // Run this once to be able to run the application with BUCK
