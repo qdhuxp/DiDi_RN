@@ -32,7 +32,9 @@ function Web(props) {
             />
             <WebView
                 ref={webView}
-                source={{uri: props.uri || route.params.uri}}
+                source={{
+                    uri: props.uri || (route.params && route.params.uri) || '',
+                }}
                 startInLoadingState={true}
                 onNavigationStateChange={(navState) => {
                     // Keep track of going back navigation within component

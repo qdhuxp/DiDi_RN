@@ -1,8 +1,9 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, useWindowDimensions } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import Header from '../component/Header';
 import SafeCenter from '../page/SafeCenter';
 import Web from '../page/Web';
@@ -11,14 +12,17 @@ import {pages} from '../Config/default';
 import QRCodeScan from '../page/QRCodeScan';
 import MessageCenter from '../page/MessageCenter';
 import CityPicker from '../page/CityPicker/index';
+import SideBar from '../page/SideBar';
 
 // const Stack = createStackNavigator();
 // const MainStack = createStackNavigator();
 const RootStack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
+const Drawer = createDrawerNavigator();
 
 function Route() {
-    const SystemNavigator = React.useRef(null);
+    const dimensions = useWindowDimensions();
+    const isLargeScreen = dimensions.width >= 768;
     const screenOptions = {
         title: '',
         headerLeft: () => {
@@ -59,7 +63,7 @@ function Route() {
         );
     });
 
-    function MainStackScreen() {
+    function MainStackScreen(props) {
         return (
             <>
                 <Tab.Navigator
@@ -72,13 +76,13 @@ function Route() {
                     screenOptions={{headerTitleAlign: 'center'}}>
                     {Screens}
                 </Tab.Navigator>
-                <Header SystemNavigator={SystemNavigator} />
+                <Header navigation={props.navigation} />
             </>
         );
     }
 
-    return (
-        <NavigationContainer ref={SystemNavigator}>
+    function RootStackScreen(props) {
+        return (
             <RootStack.Navigator>
                 <RootStack.Screen
                     name="Main"
@@ -124,6 +128,17 @@ function Route() {
                     }}
                 />
             </RootStack.Navigator>
+        )
+    }
+    return (
+        <NavigationContainer>
+            <Drawer.Navigator
+                drawerType="front"
+                initialRouteName="Home"
+                hideStatusBar
+                drawerContent={(props) => <SideBar {...props} />}>
+                <Drawer.Screen name="Home" component={RootStackScreen} />
+            </Drawer.Navigator>
         </NavigationContainer>
     );
 }

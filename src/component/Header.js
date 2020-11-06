@@ -1,5 +1,12 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import {Flex, Tabs, WingBlank} from '@ant-design/react-native';
+import {
+    Flex,
+    Tabs,
+    WingBlank,
+    Drawer,
+    WhiteSpace,
+    Button,
+} from '@ant-design/react-native';
 import {
     ImageBackground,
     StatusBar,
@@ -7,6 +14,7 @@ import {
     TouchableHighlight,
     TouchableOpacity,
     View,
+    Dimensions,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
@@ -22,6 +30,7 @@ function Header(props) {
     const headerRef = useRef(null);
     const headerBarRef = useRef(null);
     const [pageTabs, setPageTabs] = useState([]);
+    const [drawerRef, setDrawerRef] = useState(null);
 
     useEffect(() => {
         if (props.SystemNavigator) {
@@ -62,7 +71,7 @@ function Header(props) {
     return (
         <View
             style={{
-                flex: 1,
+                // flex: 1,
                 width: '100%',
                 position: 'absolute',
                 top: 0,
@@ -73,7 +82,7 @@ function Header(props) {
                     style={{
                         width: '100%',
                         height: 70,
-                        // position: 'absolute',
+                        position: 'absolute',
                         top: 0,
                         left: 0,
                         padding: 5,
@@ -115,7 +124,10 @@ function Header(props) {
                                 <View style={{flex: 1}}>
                                     <Flex justify="between">
                                         <Flex.Item>
-                                            <TouchableOpacity>
+                                            <TouchableOpacity
+                                                onPress={() => {
+                                                    props.navigation.toggleDrawer();
+                                                }}>
                                                 <View style={{width: 24}}>
                                                     <FontAwesomeIcon
                                                         icon={faUserCircle}
@@ -132,7 +144,7 @@ function Header(props) {
                                                     width: 60,
                                                 }}
                                                 onPress={() => {
-                                                    props.SystemNavigator.current.navigate(
+                                                    props.navigation.navigate(
                                                         'CityPicker',
                                                     );
                                                 }}>
@@ -175,7 +187,7 @@ function Header(props) {
                                         <View>
                                             <TouchableOpacity
                                                 onPress={() => {
-                                                    props.SystemNavigator.current.navigate(
+                                                    props.navigation.navigate(
                                                         'MessageCenter',
                                                     );
                                                 }}>
@@ -188,7 +200,7 @@ function Header(props) {
                                         <View>
                                             <TouchableOpacity
                                                 onPress={() => {
-                                                    props.SystemNavigator.current.navigate(
+                                                    props.navigation.navigate(
                                                         'QRCodeScan',
                                                     );
                                                 }}>
@@ -220,7 +232,7 @@ function Header(props) {
                         backgroundColor: '#FF6100',
                     }}
                     onTabClick={(tab, index) => {
-                        props.SystemNavigator.current.navigate(tab.name);
+                        props.navigation.navigate(tab.name);
                     }}
                     // renderTab={(tab) => {
                     //     // 可以对选中的tab设置样式
