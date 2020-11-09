@@ -6,8 +6,10 @@ import {
     Text,
     TouchableOpacity,
     View,
+    ScrollView,
     TouchableWithoutFeedback,
 } from 'react-native';
+import {Flex} from '@ant-design/react-native';
 import {Icon, Item} from 'native-base';
 // import {useNavigation} from '@react-navigation/native';
 import {
@@ -23,7 +25,7 @@ function SideBar(props) {
             title: '订单',
             icon: {
                 type: 'FontAwesome5',
-                name: 'file-alt',
+                name: 'file',
             },
             link: '',
         },
@@ -76,6 +78,238 @@ function SideBar(props) {
             </TouchableOpacity>
         );
     });
+
+    const functionShortcutList = [
+        {
+            title: '推荐有奖',
+            icon: {
+                type: 'SimpleLineIcons',
+                name: 'present',
+            },
+            badge: '',
+            link: '',
+        },
+        {
+            title: '车主招募',
+            icon: {
+                type: 'FontAwesome5',
+                name: 'user-check',
+            },
+            badge: '',
+            link: '',
+        },
+        {
+            title: '企业版',
+            icon: {
+                type: 'FontAwesome5',
+                name: 'briefcase',
+            },
+            badge: '',
+            link: '',
+        },
+        {
+            title: '优惠商城',
+            icon: {
+                type: 'FontAwesome5',
+                name: 'yen-sign',
+            },
+            badge: '',
+            link: '',
+        },
+        {
+            title: '积分商城',
+            icon: {
+                type: 'FontAwesome5',
+                name: 'shopping-cart',
+            },
+            badge: '',
+            link: '',
+        },
+        {
+            title: '权益抽奖',
+            icon: {
+                type: 'FontAwesome5',
+                name: 'ice-cream',
+            },
+            badge: '广告',
+            link: '',
+        },
+        {
+            title: '兑换码',
+            icon: {
+                type: 'FontAwesome5',
+                name: 'arrows-alt-h',
+            },
+            badge: '',
+            link: '',
+        },
+        {
+            title: '滴滴闪付',
+            icon: {
+                type: 'FontAwesome5',
+                name: 'credit-card',
+            },
+            badge: '',
+            link: '',
+        },
+        {
+            title: '学生中心',
+            icon: {
+                type: 'FontAwesome',
+                name: 'mortar-board',
+            },
+            badge: '',
+            link: '',
+        },
+        {
+            title: '亲亲卡',
+            icon: {
+                type: 'FontAwesome5',
+                name: 'heart',
+            },
+            badge: '',
+            link: '',
+        },
+        {
+            title: '换优惠券',
+            icon: {
+                type: 'FontAwesome5',
+                name: 'cart-arrow-down',
+            },
+            badge: '',
+            link: '',
+        },
+        {
+            title: '滴滴公益',
+            icon: {
+                type: 'FontAwesome5',
+                name: 'hands-helping',
+            },
+            badge: '',
+            link: '',
+        },
+        {
+            title: '特惠充值',
+            icon: {
+                type: 'FontAwesome5',
+                name: 'donate',
+            },
+            badge: '',
+            link: '',
+        },
+        {
+            title: '小桔车服',
+            icon: {
+                type: 'FontAwesome5',
+                name: 'headset',
+            },
+            badge: '',
+            link: '',
+        },
+        {
+            title: '优惠加油',
+            icon: {
+                type: 'FontAwesome5',
+                name: 'gas-pump',
+            },
+            badge: '',
+            link: '',
+        },
+        {
+            title: '同城服务',
+            icon: {
+                type: 'FontAwesome5',
+                name: 'city',
+            },
+            badge: '第三方',
+            link: '',
+        },
+        {
+            title: '手机充值',
+            icon: {
+                type: 'FontAwesome5',
+                name: 'mobile-alt',
+            },
+            badge: '',
+            link: '',
+        },
+        {
+            title: '防疫动态',
+            icon: {
+                type: 'FontAwesome5',
+                name: 'heartbeat',
+            },
+            badge: '',
+            link: '',
+        },
+        {
+            title: '车票',
+            icon: {
+                type: 'FontAwesome5',
+                name: 'ticket-alt',
+            },
+            badge: '',
+            link: '',
+        },
+        {
+            title: '意见征集',
+            icon: {
+                type: 'FontAwesome5',
+                name: 'sticky-note',
+            },
+            badge: '',
+            link: '',
+        },
+        {
+            title: '周边商城',
+            icon: {
+                type: 'FontAwesome5',
+                name: 'shopping-bag',
+            },
+            badge: '',
+            link: '',
+        },
+        {
+            title: '商旅特惠',
+            icon: {
+                type: 'FontAwesome5',
+                name: 'luggage-cart',
+            },
+            badge: '',
+            link: '',
+        },
+    ].map((item) => {
+        return (
+            <TouchableOpacity
+                style={{
+                    alignItems: 'center',
+                    alignSelf: 'center',
+                    width: 60,
+                    margin: 5,
+                    marginBottom: 10,
+                }}
+                key={item.title}
+                onPress={() => {
+                    props.navigation.navigate('Web', {uri: item.link});
+                }}>
+                <View
+                    style={{
+                        width: 20,
+                        height: 20,
+                        borderWidth: 1,
+                        borderRadius: 10,
+                        borderColor: '#888',
+                        padding: 1,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginBottom: 5,
+                    }}>
+                <Icon {...item.icon} style={{fontSize: 10, color: '#888'}} />
+                </View>
+                <Text style={{fontSize: 12, color: '#888'}}> {item.title} </Text>
+            </TouchableOpacity>
+        );
+    });
     return (
         <DrawerContentScrollView {...props}>
             <View
@@ -110,7 +344,6 @@ function SideBar(props) {
                 <TouchableWithoutFeedback>
                     <View
                         style={{
-                            // width: '100%',
                             borderRadius: 10,
                             backgroundColor: '#F3DAB1',
                             padding: 5,
@@ -118,7 +351,6 @@ function SideBar(props) {
                         }}>
                         <View
                             style={{
-                                // width: '100%',
                                 flexDirection: 'row',
                                 justifyItems: 'between',
                                 alignItems: 'center',
@@ -129,11 +361,7 @@ function SideBar(props) {
                                     flexDirection: 'row',
                                     alignItems: 'center',
                                 }}>
-                                <Icon
-                                    active
-                                    type="MaterialIcons"
-                                    name="stars"
-                                />
+                                <Icon type="MaterialIcons" name="stars" />
                                 <Text> 黄金会员 </Text>
                             </View>
                             <View
@@ -160,6 +388,11 @@ function SideBar(props) {
                     </View>
                 </TouchableWithoutFeedback>
                 <View style={{padding: 10}}>{functionList}</View>
+                <ScrollView>
+                    <Flex justify="between" wrap="wrap">
+                        {functionShortcutList}
+                    </Flex>
+                </ScrollView>
             </View>
         </DrawerContentScrollView>
     );
