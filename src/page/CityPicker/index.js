@@ -61,6 +61,47 @@ function CityPicker(props) {
 
     const [cityList, setCityList] = useState(cityData);
 
+    const AlphabetaList = [
+        'A',
+        'B',
+        'C',
+        'D',
+        'E',
+        'F',
+        'G',
+        'H',
+        // 'I',
+        'J',
+        'K',
+        'L',
+        'M',
+        'N',
+        // 'O',
+        'P',
+        'Q',
+        'R',
+        'S',
+        'T',
+        // 'U',
+        // 'V',
+        'W',
+        'X',
+        'Y',
+        'Z',
+    ].map((item, index) => {
+        return (
+            <TouchableOpacity
+                key={item}
+                onPress={() => {
+                    ListRef.current.scrollToIndexPath(
+                        {section: index, row: -1},
+                        true,
+                    );
+                }}>
+                <Text>{item}</Text>
+            </TouchableOpacity>
+        );
+    });
     function searchBar() {
         return (
             <View
@@ -179,7 +220,16 @@ function CityPicker(props) {
                 initialContentOffset={{x: 0, y: 0}}
                 renderEmpty={renderEmpty}
             />
-            {/*</View>*/}
+            <View
+                style={{
+                    position: 'absolute',
+                    top: 160,
+                    right: 30,
+                    zIndex: 100,
+                    elevation: 100, // works on android
+                }}>
+                {AlphabetaList}
+            </View>
         </>
     );
 }
