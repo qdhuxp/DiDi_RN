@@ -33,28 +33,24 @@ function Header(props) {
     const [drawerRef, setDrawerRef] = useState(null);
 
     useEffect(() => {
-        if (props.SystemNavigator) {
-            const list = pages.map((item) => {
-                return (
-                    <TouchableHighlight
-                        key={item.title}
-                        onPress={() =>
-                            props.SystemNavigator.current.navigate(item.name)
-                        }>
-                        <View
-                            style={{
-                                alignItems: 'center',
-                                justifyItems: 'center',
-                                padding: 10,
-                            }}>
-                            <Text>{item.title}</Text>
-                        </View>
-                    </TouchableHighlight>
-                );
-            });
-            setPageTabs(list);
-        }
-    }, [props.SystemNavigator]);
+        const list = pages.map((item) => {
+            return (
+                <TouchableHighlight
+                    key={item.title}
+                    onPress={() => props.navigation.navigate(item.name)}>
+                    <View
+                        style={{
+                            alignItems: 'center',
+                            justifyItems: 'center',
+                            padding: 10,
+                        }}>
+                        <Text>{item.title}</Text>
+                    </View>
+                </TouchableHighlight>
+            );
+        });
+        setPageTabs(list);
+    }, []);
 
     useEffect(() => {
         if (headerRef) {
@@ -71,7 +67,6 @@ function Header(props) {
     return (
         <View
             style={{
-                // flex: 1,
                 width: '100%',
                 position: 'absolute',
                 top: 0,
@@ -86,10 +81,7 @@ function Header(props) {
                         top: 0,
                         left: 0,
                         padding: 5,
-                        // paddingTop: 15,
                         backgroundColor: 'white',
-                        // alignItems: 'center',
-                        // justifyItems: 'start',
                         justifyContent: 'center',
                     }}>
                     <SafeAreaView>
@@ -118,7 +110,6 @@ function Header(props) {
                         backgroundColor="transparent"
                     />
                     <View style={{paddingTop: 20}}>
-                        {/*<View style={{height: 20}} />*/}
                         <WingBlank>
                             <Flex justify="between" style={{height: 60}}>
                                 <View style={{flex: 1}}>
@@ -154,10 +145,11 @@ function Header(props) {
                                                         alignItems: 'center',
                                                     }}>
                                                     <Text>
-                                                        {currentLocation &&
+                                                        {(currentLocation &&
                                                             currentLocation
                                                                 .addressComponent
-                                                                .city}
+                                                                .city) ||
+                                                            '选择城市'}
                                                     </Text>
                                                     <FontAwesomeIcon
                                                         icon={faChevronDown}
@@ -234,30 +226,6 @@ function Header(props) {
                     onTabClick={(tab, index) => {
                         props.navigation.navigate(tab.name);
                     }}
-                    // renderTab={(tab) => {
-                    //     // 可以对选中的tab设置样式
-                    //     console.log(tab);
-                    //     return (
-                    //         <View>
-                    //             <Text>{tab.title}</Text>
-                    //         </View>
-                    //     );
-                    // }}
-                    // renderTabBar={(props) => {
-                    //     console.log(props)
-                    //     return (
-                    //         <ScrollView
-                    //             horizontal={true}
-                    //             style={{
-                    //                 backgroundColor: 'white',
-                    //                 borderBottomRightRadius: 15,
-                    //                 borderBottomLeftRadius: 15,
-                    //                 borderWidth: 0,
-                    //             }}>
-                    //             {pageTabs}
-                    //         </ScrollView>
-                    //     );
-                    // }}
                 />
             </Animatable.View>
         </View>

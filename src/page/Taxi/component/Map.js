@@ -1,6 +1,5 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import {Dimensions, Text, View} from 'react-native';
-import {List, Popover} from '@ant-design/react-native';
+import {View} from 'react-native';
 import {MapView} from 'react-native-amap3d';
 import {SystemContext} from '../../../../Context';
 import PickupIndicator from './PickupIndicator';

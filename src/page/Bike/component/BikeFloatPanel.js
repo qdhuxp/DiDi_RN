@@ -12,10 +12,11 @@ import BikeLevelCard from './BikeLevelCard';
 import ADCard from '../../../component/ADCard';
 import {SystemContext} from '../../../../Context';
 import MyPositionButton from '../../../component/MyPositionButton';
-import {useIsFocused} from '@react-navigation/native';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
 
 function BikeFloatPanel(props) {
     const isFocused = useIsFocused();
+    const navigation = useNavigation();
     const slidingUpPanelProps = {
         top: Dimensions.get('window').height + 15,
         bottom: 145,
@@ -112,6 +113,9 @@ function BikeFloatPanel(props) {
                                 border: 0,
                                 borderColor: 'gray',
                                 borderRadius: 0,
+                            }}
+                            onPress={() => {
+                                navigation.navigate('QRCodeScan');
                             }}>
                             扫码用车
                         </Button>

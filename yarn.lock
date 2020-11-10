@@ -6243,11 +6243,6 @@ react-native-amap3d@^2.0.2:
   resolved "https://registry.npm.taobao.org/react-native-amap3d/download/react-native-amap3d-2.0.2.tgz#aa2be7d713c4915e294fe0ad319da080354d90a8"
   integrity sha1-qivn1xPEkV4pT+CtMZ2ggDVNkKg=
 
-react-native-android-location-services-dialog-box@^2.8.2:
-  version "2.8.2"
-  resolved "https://registry.npm.taobao.org/react-native-android-location-services-dialog-box/download/react-native-android-location-services-dialog-box-2.8.2.tgz#41d3dd1203cf635a5ef6ee81a1eb75dd20fd5c6f"
-  integrity sha1-QdPdEgPPY1pe9u6Boet13SD9XG8=
-
 react-native-animatable@^1.3.3:
   version "1.3.3"
   resolved "https://registry.npm.taobao.org/react-native-animatable/download/react-native-animatable-1.3.3.tgz#a13a4af8258e3bb14d0a9d839917e9bb9274ec8a"
@@ -6753,11 +6748,6 @@ rn-sliding-up-panel@^2.4.3:
   dependencies:
     clamp "^1.0.1"
     prop-types "^15.7.2"
-
-rn-swipeable-panel@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.npm.taobao.org/rn-swipeable-panel/download/rn-swipeable-panel-1.2.1.tgz#b12c68f8bb2dd173724f7c809769fd072deb2ead"
-  integrity sha1-sSxo+Lst0XNyT3yAl2n9By3rLq0=
 
 rsvp@^4.8.4:
   version "4.8.5"
