@@ -16,9 +16,9 @@ export default function AppContext({children}) {
     const [currentPosition, setCurrentPosition] = useState(null);
     const [showHeader, setShowHeader] = useState(true);
     const AMapKey = {
-        ios: '559d4848d962ba44de28158927e4e799',
-        android: '559d4848d962ba44de28158927e4e799',
-        web: '0f7d2231a1de02f07c3720e324ebea2d',
+        ios: 'YOUR_IOS_KEY_HERE',
+        android: 'YOUR_ANDROID_KEY_HERE',
+        web: 'YOUR_WEB_KEY_HERE',
     };
 
     useEffect(() => {
