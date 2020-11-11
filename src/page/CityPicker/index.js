@@ -16,7 +16,7 @@ import {SystemContext} from '../../../Context';
 function CityPicker(props) {
     const navigation = useNavigation();
     const ListRef = useRef(null);
-    const {currentLocation} = useContext(SystemContext);
+    const {currentCityName} = useContext(SystemContext);
 
     const styles = StyleSheet.create({
         search: {
@@ -130,21 +130,6 @@ function CityPicker(props) {
         );
     }
 
-    function renderHeader() {
-        return (
-            <View
-                style={{
-                    height: 50,
-                    justifyContent: 'center',
-                    padding: 10,
-                    backgroundColor: 'white',
-                }}>
-                <Text>
-                    {'当前定位城市：' + currentLocation.addressComponent.city}
-                </Text>
-            </View>
-        );
-    }
     function renderEmpty() {
         return (
             <View style={styles.empty}>
@@ -198,9 +183,7 @@ function CityPicker(props) {
         <>
             {searchBar()}
             <View style={{height: 30, justifyContent: 'center', padding: 20}}>
-                <Text>
-                    {'当前定位城市：' + currentLocation.addressComponent.city}
-                </Text>
+                <Text>{'当前定位城市：' + currentCityName}</Text>
             </View>
             <LargeList
                 style={{

@@ -56,7 +56,7 @@ function Map(props) {
                 ref={MapRef}
                 style={{width: '100%', height: '100%'}}
                 zoomLevel={18}
-                locationInterval={10000}
+                locationInterval={5000}
                 distanceFilter={10}
                 center={myPosition}
                 coordinate={myPosition}
