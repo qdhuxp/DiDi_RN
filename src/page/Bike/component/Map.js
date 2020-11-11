@@ -19,15 +19,13 @@ function Map(props) {
             <MapView
                 style={{width: '100%', height: '100%'}}
                 zoomLevel={15}
-                locationInterval={10000}
+                locationInterval={5000}
                 distanceFilter={10}
                 center={location}
                 coordinate={location}
                 locationEnabled
-                showsCompass
                 showsScale
                 showsLocationButton
-                showsZoomControls
                 showsLabels
                 showsTraffic
                 scrollEnabled

@@ -14,6 +14,7 @@ export default function AppContext({children}) {
     const [systemNavigator, setSystemNavigator] = useState(null);
     const [currentLocation, setCurrentLocation] = useState(null);
     const [currentPosition, setCurrentPosition] = useState(null);
+    const [currentCityName, setCityName] = useState(null);
     const [showHeader, setShowHeader] = useState(true);
     const AMapKey = {
         ios: '559d4848d962ba44de28158927e4e799',
@@ -28,6 +29,18 @@ export default function AppContext({children}) {
             Geolocation.clearWatch(locationTimer);
         };
     }, []);
+
+    useEffect(() => {
+        if (currentLocation) {
+            if (currentLocation.addressComponent.city.toString().length) {
+                setCityName(currentLocation.addressComponent.city);
+            } else {
+                setCityName(currentLocation.addressComponent.district);
+            }
+        } else {
+            setCityName(null);
+        }
+    }, [currentLocation]);
 
     async function getLocation() {
         // 对于 Android 需要自行根据需要申请权限
@@ -53,19 +66,33 @@ export default function AppContext({children}) {
     // https://lbs.amap.com/api/webservice/guide/api/georegeo
     function getReadableAddress(location) {
         const url =
-            'http://restapi.amap.com/v3/geocode/regeo?output=json&key=' +
+            'https://restapi.amap.com/v3/geocode/regeo?output=json&key=' +
             AMapKey.web +
-            '&radius=100&extensions=all&location=';
-        fetch(url + location.longitude + ',' + location.latitude, {
+            '&radius=100&extensions=all&location=' +
+            location.longitude +
+            ',' +
+            location.latitude;
+        fetch(url, {
             method: 'GET',
         })
             .then((response) => response.json())
             .then((responseJson) => {
+                console.log(responseJson.regeocode);
                 setCurrentLocation(responseJson.regeocode);
+                if (
+                    responseJson.regeocode.addressComponent.city.toString()
+                        .length
+                ) {
+                    setCityName(responseJson.regeocode.addressComponent.city);
+                } else {
+                    setCityName(
+                        responseJson.regeocode.addressComponent.district,
+                    );
+                }
                 // console.log(responseJson.regeocode.addressComponent.building);
             })
             .catch((error) => {
-                console.error(error);
+                console.error(url, error);
             });
     }
 
@@ -102,6 +129,7 @@ export default function AppContext({children}) {
                 setCurrentPosition,
                 currentLocation,
                 setCurrentLocation,
+                currentCityName,
                 getShortAddress,
                 getReadableAddress,
             }}>

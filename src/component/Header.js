@@ -1,20 +1,11 @@
-import React, {useContext, useEffect, useRef, useState} from 'react';
-import {
-    Flex,
-    Tabs,
-    WingBlank,
-    Drawer,
-    WhiteSpace,
-    Button,
-} from '@ant-design/react-native';
+import React, {useContext, useEffect, useRef} from 'react';
+import {Flex, Tabs, WingBlank} from '@ant-design/react-native';
 import {
     ImageBackground,
     StatusBar,
     Text,
-    TouchableHighlight,
     TouchableOpacity,
     View,
-    Dimensions,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
@@ -26,31 +17,9 @@ import NavLeftButton from './NavLeftButton';
 import {pages} from '../Config/default';
 
 function Header(props) {
-    const {showHeader, currentLocation} = useContext(SystemContext);
+    const {showHeader, currentCityName} = useContext(SystemContext);
     const headerRef = useRef(null);
     const headerBarRef = useRef(null);
-    const [pageTabs, setPageTabs] = useState([]);
-    const [drawerRef, setDrawerRef] = useState(null);
-
-    useEffect(() => {
-        const list = pages.map((item) => {
-            return (
-                <TouchableHighlight
-                    key={item.title}
-                    onPress={() => props.navigation.navigate(item.name)}>
-                    <View
-                        style={{
-                            alignItems: 'center',
-                            justifyItems: 'center',
-                            padding: 10,
-                        }}>
-                        <Text>{item.title}</Text>
-                    </View>
-                </TouchableHighlight>
-            );
-        });
-        setPageTabs(list);
-    }, []);
 
     useEffect(() => {
         if (headerRef) {
@@ -145,10 +114,7 @@ function Header(props) {
                                                         alignItems: 'center',
                                                     }}>
                                                     <Text>
-                                                        {(currentLocation &&
-                                                            currentLocation
-                                                                .addressComponent
-                                                                .city) ||
+                                                        {currentCityName ||
                                                             '选择城市'}
                                                     </Text>
                                                     <FontAwesomeIcon

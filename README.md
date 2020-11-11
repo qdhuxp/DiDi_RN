@@ -12,6 +12,8 @@
 6. 消息中心页面，模仿滴滴App中的消息列表；
 7. 条码扫码页面，可以扫描QR码；
 
+Demo： [Android APK下载](https://github.com/qdhuxp/DiDi_RN/blob/master/Demo/app-release.apk)
+
 效果图
 --------
 ![image](https://github.com/qdhuxp/DiDi_RN/blob/master/Demo/sidebar.gif)
